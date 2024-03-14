@@ -1,43 +1,132 @@
+:root,
+:root.light {
+  --bg-color: #fff;
+  --text-color: #333;
+  --fullscreen:rgba(0, 0, 0, 0.486);
+}
+
+:root.dark {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --fullscreen:rgba(255, 255, 255, 0.137);
+}
+
 body {
-    font-family: sans-serif;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #fff; /* Full screen white background */
-    color: #333;
+  font-family: sans-serif;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--bg-color); /* Full screen white background */
+  color: var(--text-color);
 }
 
 .container {
-    background-color: inherit; /* Inherit white background from body */
-    padding: 20px;
-    border-radius: 5px;
+  background-color: inherit; /* Inherit white background from body */
+  padding: 20px;
+  border-radius: 5px;
 }
 
 #time {
-    font-size: 50px;
-}
-
-/* Dark Mode Styles */
-
-.dark-mode {
-    background-color: #000000;
-    color: #fff;
-}
-
-.dark-mode .container {
-    background-color: #000000;
+  font-size: 50px;
 }
 
 
 /* Media Queries for Responsive Adjustments */
 
 @media only screen and (max-width: 768px) {
-    .container {
-        padding: 10px;
-    }
-    #time {
-        font-size: calc(2vw + 1rem); /* Adjust font size for smaller screens */
-    }
+  .container {
+    padding: 10px;
+  }
+  #time {
+    font-size: calc(2vw + 1rem); /* Adjust font size for smaller screens */
+  }
+}
+
+/* btm */
+.toggle-fullscreen-btn {
+  position: fixed;
+  z-index: 10000;
+  top: 10px;
+  right: 10px;
+  border: 0;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.toggle-fullscreen-svg {
+  display: block;
+  height: auto;
+}
+
+.toggle-fullscreen-svg path {
+  transform-box: view-box;
+  transform-origin: 12px 12px;
+  fill: none;
+  stroke: var(--fullscreen);
+  stroke-width: 4;
+  transition: 0.15s;
+}
+
+.toggle-fullscreen-btn:hover path:nth-child(1),
+.toggle-fullscreen-btn:focus path:nth-child(1) {
+  transform: translate(-2px, -2px);
+}
+
+.toggle-fullscreen-btn:hover path:nth-child(2),
+.toggle-fullscreen-btn:focus path:nth-child(2) {
+  transform: translate(2px, -2px);
+}
+
+.toggle-fullscreen-btn:hover path:nth-child(3),
+.toggle-fullscreen-btn:focus path:nth-child(3) {
+  transform: translate(2px, 2px);
+}
+
+.toggle-fullscreen-btn:hover path:nth-child(4),
+.toggle-fullscreen-btn:focus path:nth-child(4) {
+  transform: translate(-2px, 2px);
+}
+
+.toggle-fullscreen-btn:not(.on) .icon-fullscreen-leave {
+  display: none;
+}
+
+.toggle-fullscreen-btn.on .icon-fullscreen-enter {
+  display: none;
+}
+
+.toggle-container {
+  position: relative;
+}
+
+.theme-btn {
+  width: 6em;
+  height: 6em;
+  padding: 0.5em;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+.theme-btn img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.theme-btn.light {
+  display: none;
+}
+
+.dark .theme-btn.dark {
+  display: none;
+}
+
+.dark .theme-btn.light {
+  display: block;
 }
