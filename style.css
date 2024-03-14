@@ -1,0 +1,43 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #fff; /* Full screen white background */
+    color: #333;
+}
+
+.container {
+    background-color: inherit; /* Inherit white background from body */
+    padding: 20px;
+    border-radius: 5px;
+}
+
+#time {
+    font-size: 50px;
+}
+
+/* Dark Mode Styles */
+
+.dark-mode {
+    background-color: #000000;
+    color: #fff;
+}
+
+.dark-mode .container {
+    background-color: #000000;
+}
+
+
+/* Media Queries for Responsive Adjustments */
+
+@media only screen and (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    #time {
+        font-size: calc(2vw + 1rem); /* Adjust font size for smaller screens */
+    }
+}
