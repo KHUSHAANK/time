@@ -1,16 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Time Display</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="container">
-        <h1 id="time"></h1>
+      <h1 id="time"></h1>
     </div>
-    <button id="toggleMode">Toggle Mode</button>
+    <div class="toggle-container">
+      <button
+        class="theme-btn light"
+        onclick="setTheme('light')"
+        title="Light mode"
+      >
+        <img src="https://assets.codepen.io/210284/sun.png" alt="sun" />
+      </button>
+      <button
+        class="theme-btn dark"
+        onclick="setTheme('dark')"
+        title="Dark mode"
+      >
+        <img src="https://assets.codepen.io/210284/moon.png" alt="moon" />
+      </button>
+    </div>
+
+    <button
+      class="js-toggle-fullscreen-btn toggle-fullscreen-btn"
+      aria-label="Enter fullscreen mode"
+      hidden
+    >
+      <svg
+        class="toggle-fullscreen-svg"
+        width="28"
+        height="28"
+        viewBox="-2 -2 28 28"
+      >
+        <g class="icon-fullscreen-enter">
+          <path d="M 2 9 v -7 h 7" />
+          <path d="M 22 9 v -7 h -7" />
+          <path d="M 22 15 v 7 h -7" />
+          <path d="M 2 15 v 7 h 7" />
+        </g>
+
+        <g class="icon-fullscreen-leave">
+          <path d="M 24 17 h -7 v 7" />
+          <path d="M 0 17 h 7 v 7" />
+          <path d="M 0 7 h 7 v -7" />
+          <path d="M 24 7 h -7 v -7" />
+        </g>
+      </svg>
+    </button>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
