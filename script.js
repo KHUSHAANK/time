@@ -1,20 +1,56 @@
-const timeDisplay = document.getElementById('time');
-const toggleModeBtn = document.getElementById('toggleMode');
+const timeDisplay = document.getElementById("time");
 
 function updateTime() {
   const date = new Date();
-  const hours = date.getHours() % 12;  // Get hours in 12-hour format (0-11)
-  const minutes = date.getMinutes().toString().padStart(2, '0');
-  const seconds = date.getSeconds().toString().padStart(2, '0');
-  const amPm = hours >= 12 ? 'PM' : 'AM';  // Add AM or PM based on hour
+  const hours = date.getHours() % 12; // Get hours in 12-hour format (0-11)
+  const minutes = date.getMinutes().toString().padStart(2, "0");
+  const seconds = date.getSeconds().toString().padStart(2, "0");
+  const amPm = hours >= 12 ? "PM" : "AM"; // Add AM or PM based on hour
 
-  const formattedTime = `${hours === 0 ? 12 : hours}:${minutes}:${seconds} ${amPm}`;
+  const formattedTime = `${
+    hours === 0 ? 12 : hours
+  }:${minutes}:${seconds} ${amPm}`;
   timeDisplay.textContent = formattedTime;
 }
 
 updateTime();
 setInterval(updateTime, 1000);
 
-toggleModeBtn.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
-});
+if (document.fullscreenEnabled || document.webkitFullscreenEnabled) {
+  const toggleBtn = document.querySelector(".js-toggle-fullscreen-btn");
+
+  const styleEl = document.createElement("link");
+  styleEl.setAttribute("rel", "stylesheet");
+  styleEl.setAttribute("href", "https://codepen.io/tiggr/pen/poJoLyW.css");
+  styleEl.addEventListener("load", function () {
+    toggleBtn.hidden = false;
+  });
+  document.head.appendChild(styleEl);
+
+  toggleBtn.addEventListener("click", function () {
+    if (document.fullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitFullscreenElement) {
+      document.webkitCancelFullScreen();
+    } else if (document.documentElement.requestFullscreen) {
+      document.documentElement.requestFullscreen();
+    } else {
+      document.documentElement.webkitRequestFullScreen();
+    }
+  });
+
+  document.addEventListener("fullscreenchange", handleFullscreen);
+  document.addEventListener("webkitfullscreenchange", handleFullscreen);
+
+  function handleFullscreen() {
+    if (document.fullscreen || document.webkitFullscreenElement) {
+      toggleBtn.classList.add("on");
+      toggleBtn.setAttribute("aria-label", "Exit fullscreen mode");
+    } else {
+      toggleBtn.classList.remove("on");
+      toggleBtn.setAttribute("aria-label", "Enter fullscreen mode");
+    }
+  }
+}
+
+const setTheme = (theme) => (document.documentElement.className = theme);
