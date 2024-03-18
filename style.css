@@ -100,12 +100,15 @@ body {
 }
 
 .toggle-container {
-  position: relative;
+  position: absolute; /* Makes the container positioned relative to its parent */
+  top: 10px;  /* Adjust the top position from the edge */
+  left: 10px;  /* Adjust the left position from the edge */
 }
 
+
 .theme-btn {
-  width: 6em;
-  height: 6em;
+  width: 5em;
+  height: 5em;
   padding: 0.5em;
   border-radius: 50%;
   cursor: pointer;
